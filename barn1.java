@@ -13,7 +13,7 @@ class barn1
   {
         BufferedReader in = new BufferedReader(new FileReader("barn1.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("barn1.out")));
-		
+		// hello
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		int M= Integer.parseInt(st.nextToken()); 
 		int S= Integer.parseInt(st.nextToken()); 
