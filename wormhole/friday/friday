@@ -1,0 +1,68 @@
+/*
+ID: wzhang11
+LANG: JAVA
+TASK: friday
+*/
+
+import java.io.*;
+import java.util.*;
+
+class friday 
+{
+    public static int d1 (int m, int ds, int y, int[] month){
+		// 3 test cases: Feb, 30/31 days
+		if(m!=2){
+			if (month[m]==31){
+				if (ds==6)
+					return 1;
+				else if(ds==5)
+					return 0;
+				else 
+					return (ds+2)
+			}
+			else if (month[m]==30){
+				if (ds==6)
+					return 0;
+				else 
+					return ds+1;
+			}
+			
+		}
+		else if((y%4)==0&&y%100!=0){ // feb, 
+				
+			}
+			
+	
+		
+    }
+	
+	public static int d13 (int ds){
+		if (ds>1)
+			return (5-(7-ds));
+		else 
+			return(ds+5);
+	}
+	
+
+  public static void main (String [] args){
+        BufferedReader in = new BufferedReader(new FileReader("friday.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("friday	.out")));        
+        StringTokenizer st;
+        st = new StringTokenizer(in.readLine());
+        YS= Integer.parseInt(st.nextToken());
+        
+        int[] nday= new int[7];
+        int[] month = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        
+		// nday all = 0
+        for (int count=0; count<7; ++count)
+              nday[count]=0;
+		
+		// 
+		
+        in.close();
+        out.close();
+        
+        System.exit(0);       
+  }
+}
