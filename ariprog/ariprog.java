@@ -7,10 +7,40 @@ import java.io.*;
 import java.util.*;
 
 class ariprog 
-{  
-	int N, M;
-	int[] bisquare;
-	int[] squareList ={0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 
+{  	//search 
+	public static boolean binarySearch(int[] ar, int key, int start, int length){
+		int min =start, max =length-1, mid,count =0;
+		while(count<10&&min <=max&&max<length){
+			System.out.println("/n"+ar[min]+" "+ar[max]+" "+ key);
+			mid = (min+max)/2; 
+			if(ar[mid]==key)
+				return true;
+			else if(ar[mid]>key){
+				max=mid+1;
+			}
+			else if(ar[mid]<key){
+				min = mid+1; 
+			}
+			else
+				max = mid-1;
+			count++;
+		}
+		System.out.println();
+		return false; 
+	}
+  public static void main (String [] args) throws IOException
+  {
+        BufferedReader in = new BufferedReader(new FileReader("ariprog.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ariprog.out")));	
+		
+
+		// scan in #s, N, M
+		StringTokenizer st = new StringTokenizer(in.readLine());
+		int N = Integer.parseInt(st.nextToken()); 
+		st = new StringTokenizer(in.readLine());
+		int M = Integer.parseInt(st.nextToken())+1; 
+	//squares array
+		int[] squareList ={0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 
 			256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961,
 			1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 
 			2025, 2116, 2209, 2304, 2401, 2500, 2601, 2704, 2809, 2916, 3025, 3136, 3249, 
@@ -31,37 +61,49 @@ class ariprog
 			47524, 47961, 48400, 48841, 49284, 49729, 50176, 50625, 51076, 51529, 51984, 
 			52441, 52900, 53361, 53824, 54289, 54756, 55225, 55696, 56169, 56644, 57121, 
 			57600, 58081, 58564, 59049, 59536, 60025, 60516, 61009, 61504, 62001, 62500}; 
-	
-	ariprog(int n, int m){
-		N=n;		M=m+1; 
-		int[] bisquare = new int[M*M];
-		for(int i=0; i<M; i++){
-			for(int k=0; k<M; k++){
-				bisquare[i*M+k]= squareList[i]+squareList[k];
-				// System.out.println(bisquare[i*M+k]);
+		// determine bisquare array size 
+		int size; 
+		if(M%2==0)
+			 size = (M/2)*(M+1);
+		else
+			 size = (M+1)*(M/2)+M/2+1; 
+		
+		int[] bisquare = new int[size];
+		//create and sort bisquare array 
+		for(int i = 0, count = 0; i <= M; i++){
+			for(int k = i; k < M; k++, count++){
+				bisquare[count] = squareList[i]+ squareList[k];
+				//System.out.println("count: "+ count+" \t bs: "+ bisquare[count]);
 			}
 		}
-		Arrays.sort(bisquare); 
+		/*for(int a: bisquare)
+			out.println(a);*/
+		Arrays.sort(bisquare);
+		boolean any; 
+		out.println("\nSorted Array");		
+		for(int a: bisquare)
+			System.out.println(a);
+		//a= bisquare[N], 2nd sequence is bisquare[N+1], b = difference between the two 
+		for(int i=0, a; i<1;i++){
+			//size-N
+			a = bisquare[i];
+			//size-N+1
+			for(int k = i+1, b; k<4; k++){
+				b = bisquare[k]-a;			int j; 
+				for(j = 2; j<N;j++){
+					// search if in bisquare array 
+					System.out.println(a+" "+ b);
+					if(binarySearch(bisquare,a+j*b, k, size))
+						break;
+				}
+				System.out.println("out"+i);
+				if(j==N){
+					out.println(bisquare[a]+" "+b);
+					any = true; 
+				}
+			}
+		}		
 		
-		}
-	
-		// make array w/ all bisquares 
-		// sort bisquares array use built in method 
-		// start with smallest as a, then next biggest, find dif --> b, test if next one has
-			// b, is there using search 
-	
-  public static void main (String [] args) throws IOException
-  {
-        BufferedReader in = new BufferedReader(new FileReader("ariprog.in"));
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ariprog.out")));	
-		
-		// scan in #s, N, M
-		StringTokenizer st = new StringTokenizer(in.readLine());
-		int N = Integer.parseInt(st.nextToken()); 
-		st = new StringTokenizer(in.readLine());
-		int M = Integer.parseInt(st.nextToken()); 
-		
-		ariprog ap = new ariprog(N, M);		
 		out.close();
 		in.close();
 		System.exit(0);	
