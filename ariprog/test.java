@@ -1,8 +1,11 @@
 import java.util.*;
+import java.io.*;
 
 class test{
 
-int[] sqList = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 
+
+	public static void main  (String args[]) throws IOException{
+		int[] sqList = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 
 			256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961,
 			1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 
 			2025, 2116, 2209, 2304, 2401, 2500, 2601, 2704, 2809, 2916, 3025, 3136, 3249, 
@@ -24,11 +27,15 @@ int[] sqList = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225
 			52441, 52900, 53361, 53824, 54289, 54756, 55225, 55696, 56169, 56644, 57121, 
 			57600, 58081, 58564, 59049, 59536, 60025, 60516, 61009, 61504, 62001, 62500};
 			
-int[]bisqList = new int[125000]
-			for(int i=0; i<251; i++){
-				for(int k=0; k<251; k++){
-					bisqList[i*251+k] = sqList[i]+ 
-				}
+			 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("test.out")));	
+		int count =0; 
+		for(int i = 0; i < sqList.length; i++){
+			for(int k = 0; k <=i; k++, count++){
+				//bisquare[count] = squareList[i]+ squareList[k];
+				out.print((sqList[i]+ sqList[k])+", ");
 			}
-
+		}
+		System.out.println(count); 
+//int[]bisqList = new int[125000];
+	}
 }
