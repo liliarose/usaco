@@ -3,75 +3,63 @@ ID: wzhang11
 LANG: JAVA
 TASK: combo
 */
-import java.io.*;
 import java.util.*;
+import java.io.*; 
 
-class combo 
-{   
-	public int isOverlap(int a, int b, int N){
-		int d;
-		if(a>b)
-				d= a-b; 
-			else
-				d= b-a; 
-		if(N>9){
-			if((5-d)>0)
-				return 5-d;
-			else{
-				if((5-N+d)>0)
-					return (5-N+d);
-			}
-		}
-		else if(N>5){
-			int sum=0;
-			if(5-d>0)
-				sum+=(5-d);
-			if((5-N+d)>0)
-				sum+=(5-N+d);
-			return sum; 
-		}
-		else if(N>0){
-			return N; 
-		}
-		return 0; 
-		
-	}
-
-  public static void main (String [] args) throws IOException
-  {
-        BufferedReader in = new BufferedReader(new FileReader("combo.in"));
+class combo{
+	
+	public static void main(String[] args) throws IOException{
+		BufferedReader in = new BufferedReader(new FileReader("combo.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("combo.out")));
-		combo cb = new combo(); 
+		
+		// Scanner scan = new Scanner(System.in);
+		//int N = scan.nextInt();
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		int N = Integer.parseInt(st.nextToken());
-		int[] a= new int[3]; 
-		int[] b= new int[3];  
+		
+		if(N < 6){
+			out.println(N*N*N);
+			in.close();
+			out.close();
+			System.exit(0);
+		}
+		int[] M1 = new int[3];
+		int[] M2 = new int[3];
+		
 		st = new StringTokenizer(in.readLine());
 		for(int i=0; i<3; ++i){
-			a[i]= Integer.parseInt(st.nextToken());
+			M1[i]= Integer.parseInt(st.nextToken());
 		}
+		
 		st = new StringTokenizer(in.readLine());
 		for(int i=0; i<3; ++i){
-			b[i]= Integer.parseInt(st.nextToken());
-		}
-		int [] same = new int[3];
-		for(int i=0; i<3;++i){
-			same[i]=cb.isOverlap(a[i], b[i], N); 
-			//System.out.println(a[i]+" "+ b[i]+" "+same[i]);
+			M2[i]= Integer.parseInt(st.nextToken());
 		}
 		
-		if(N>5){
-			out.println((250-same[0]*same[1]*same[2]));
+		/*M1[0]= scan.nextInt();
+		M1[1]= scan.nextInt();
+		M1[2]= scan.nextInt();
+		M2[0]= scan.nextInt();
+		M2[1]= scan.nextInt();
+		M2[2]= scan.nextInt();*/
+		int[] same = new int[3];
+		int d;
+		for(int i=0; i<3; ++i){
+			if(M1[i] > M2[i])
+				d = M1[i]-M2[i];
+			else
+				d = M2[i]-M1[i];
+			if(d < 5)
+				same[i] = 5-d;
+			else if((N-d) < 5)
+				same[i] = 5+d-N;
 		}
-		else{
-			out.println((N*N*N));
-		}
+		out.println(250-same[0]*same[1]*same[2]);
 		
-		
-        in.close();
+		in.close();
         out.close();
       
           
-        System.exit(0);       
-  }
+        System.exit(0);  
+	}
 }
