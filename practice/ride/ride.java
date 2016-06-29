@@ -11,9 +11,7 @@ class ride {
   public static int ModVal (String str)
   {
       int v=1;
-      int len = 6;
-      if (str.length()<6)
-          len=str.length();
+      int len = 
       
       for (int i=0;i<len;++i)
       {
