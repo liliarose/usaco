@@ -1,5 +1,5 @@
 /*
-ID: wenxzha1 
+ID: your_id_here
 TASK: test
 LANG: C++                 
 */
@@ -11,8 +11,8 @@ LANG: C++
 using namespace std;
 
 int main() {
+    ofstream fout ("test.out");
     ifstream fin ("test.in");
-    ofstream fout("test.out");
     int a, b;
     fin >> a >> b;
     fout << a+b << endl;
