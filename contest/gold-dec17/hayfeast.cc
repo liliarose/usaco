@@ -31,28 +31,23 @@ int main() {
         fin >> flavor[i] >> spicy[i];
     }
     
-    for(unsigned int currMS = 0, prevMS_hay = 0, curr_hay = 0; curr_hay < N;){
+    //MS = max spice lvl
+    for(unsigned int currMS = 0, prevMS_hay = 0, curr_hay = 0; curr_hay < N; curr_hay++){ 
         totF += flavor[curr_hay];
         if(spicy[curr_hay] > currMS) {
             currMS = spicy[curr_hay]; prevMS_hay = curr_hay;
-            //if(debug) { cout << currMS << " (currMS)\t" << curr_hay << " (currhay)" << endl;}
         }
         if(totF >= M) { 
             if(currMS < min_spicy){ 
                 min_spicy = currMS; 
-                //cout << currMS << " (currMS)\t" << curr_hay << " (currhay)" << endl;
             }
-            //cout << "CYCLE ENDED AT " << curr_hay << endl;
             totF = 0;   currMS = 0;
-            curr_hay = prevMS_hay + 1;
-        } else {
-            curr_hay++;
+            curr_hay = prevMS_hay;
         }
     } 
 
     if(debug) {
         cout << min_spicy << endl;
-        //cout << UINT_MAX << endl;
     }
     fout << min_spicy << endl;
 
