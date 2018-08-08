@@ -36,15 +36,14 @@ int main() {
     }
    
     int least = (homework[N] < homework[N-1])?(homework[N]):(homework[N-1]), sum = homework[N] + homework[N-1];
+    
     for(int i = N-2; i > 0; i--){
         double currScore = (sum - least)/(N-i-1.0);
         if(currScore > kMax) { 
             kMax = currScore;    kLim = 0;  
-            //cout << "CHANGED MAX SUM TO: " << currScore << "\t";
         }   
         if(currScore == kMax) { 
             K[kLim] = i;        kLim++; 
-            //cout << i -1 << "\tADDED with MAX SUM OF: " << currScore << "\n";
         }   
         sum += homework[i];
         if(least > homework[i]) least = homework[i];

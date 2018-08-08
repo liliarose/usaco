@@ -45,8 +45,7 @@ int main() {
         cowlink_log[log[i].id] = SVAL;
     }
     sort(log, log+N, compCow);
-    //print(log, N);
-    cc[SVAL] = N+1; //starts with this #
+    cc[SVAL] = N+1; 
     for(int i = 0; i < N; i++){
         cow curr = log[i];
         old_top = (cc.begin() -> first == cowlink_log[curr.id]); 
@@ -62,7 +61,6 @@ int main() {
         }
     }
     fout << daysChanged << endl;
-    cout << daysChanged << endl;
     return 0;
 }
 

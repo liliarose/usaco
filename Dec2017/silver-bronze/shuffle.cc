@@ -37,20 +37,15 @@ int main() {
     int back_cnt[N+1];
     queue <int> q;
     
-    //memset(test, 0, sizeof(test));
     memset(back_cnt, 0, sizeof(back_cnt));
 
-    //back_cnt[][0] = first value && back_cnt[][1] = last value
     for(int i = 1; i <= N; i++){
         fin >> order[i];
         back_cnt[order[i]]++;
     }
-    //print(back_cnt, N);  
-    //memset(flag, 0, sizeof(flag));
 
     for(int i = 1; i <= N; i++){
         if(!back_cnt[i]){
-            //cout << i << endl;
             q.push(i);
             cnt--;
         }
@@ -59,17 +54,13 @@ int main() {
     while(!q.empty()){
        int i = q.front();
        q.pop();
-       //back_cnt[order[i]]--;
        if(!(--back_cnt[order[i]])){
            q.push(order[i]);
            cnt--;
        }
-       //print(back_cnt, N);
     }
     
-    //cout << cnt << endl;
     fout << cnt << endl;
-    //print(test, N);
     return 0;
 }
 
